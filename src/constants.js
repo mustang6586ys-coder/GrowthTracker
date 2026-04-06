@@ -1,0 +1,80 @@
+export const RANKS = [
+  {
+    id: "C",
+    bmi: 18.0,
+    label: "基礎トレ期",
+    color: "from-slate-500 to-slate-400",
+  },
+  {
+    id: "CC",
+    bmi: 18.5,
+    label: "脱・細身",
+    color: "from-blue-400 to-blue-300",
+  },
+  {
+    id: "CCC",
+    bmi: 19.0,
+    label: "パワー準備",
+    color: "from-cyan-400 to-cyan-300",
+  },
+  {
+    id: "B",
+    bmi: 19.5,
+    label: "標準の入口",
+    color: "from-emerald-400 to-emerald-300",
+  },
+  {
+    id: "BB",
+    bmi: 20.0,
+    label: "バランス型",
+    color: "from-green-400 to-green-300",
+  },
+  {
+    id: "BBB",
+    bmi: 20.5,
+    label: "出力UPの兆し",
+    color: "from-lime-400 to-lime-300",
+  },
+  {
+    id: "A",
+    bmi: 21.0,
+    label: "ハイパフォーマンス",
+    color: "from-yellow-400 to-yellow-300",
+  },
+  {
+    id: "AA",
+    bmi: 21.5,
+    label: "主力級フィジカル",
+    color: "from-orange-400 to-orange-300",
+  },
+  {
+    id: "AAA",
+    bmi: 22.0,
+    label: "トップコンディション",
+    color: "from-rose-400 to-rose-300",
+  },
+  {
+    id: "S",
+    bmi: 22.5,
+    label: "パワーエリート",
+    color: "from-pink-400 to-pink-300",
+  },
+  {
+    id: "SS",
+    bmi: 23.0,
+    label: "圧倒的フィジカル",
+    color: "from-fuchsia-400 to-fuchsia-300",
+  },
+  {
+    id: "SSS",
+    bmi: 23.5,
+    label: "超重量級パワー",
+    color: "from-purple-400 to-purple-300",
+  },
+  {
+    id: "UNICORN",
+    bmi: 24.0,
+    label: "至高の領域",
+    color: "from-indigo-500 via-purple-500 to-pink-500",
+  },
+];

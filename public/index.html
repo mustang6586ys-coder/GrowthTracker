@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EGT | Tokyo Edogawa Boys</title>
+    <style>
+      /* --- 1. CSS: デザイン（バイブス）層 --- */
+      :root {
+        --primary: #007bff;
+        --success: #28a745;
+        --unicorn: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+        --matsu: #ffd700;
+        --take: #c0c0c0;
+        --ume: #cd7f32;
+      }
+      body {
+        font-family: -apple-system, sans-serif;
+        background: #f0f2f5;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+      }
+      .app-container {
+        width: 100%;
+        max-width: 450px;
+      }
+      .card {
+        background: white;
+        border-radius: 20px;
+        padding: 25px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+
+      /* 入力UI */
+      .input-group {
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+      input {
+        width: 100%;
+        padding: 15px;
+        border: 2px solid #eee;
+        border-radius: 12px;
+        font-size: 18px;
+        box-sizing: border-box;
+        transition: 0.3s;
+      }
+      input:focus {
+        border-color: var(--primary);
+        outline: none;
+      }
+      .btn-submit {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 12px;
+        background: var(--primary);
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      /* 結果UI */
+      #result-screen {
+        display: none;
+        text-align: center;
+        animation: fadeInUp 0.6s ease-out;
+      }
+      .rank-badge {
+        display: inline-block;
+        padding: 12px 30px;
+        border-radius: 50px;
+        font-size: 28px;
+        font-weight: 900;
+        color: white;
+        margin-bottom: 15px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+      .bmi-display {
+        font-size: 40px;
+        font-weight: 800;
+        margin: 10px 0;
+        color: #222;
+      }
+      .gauge-bg {
+        height: 12px;
+        background: #eee;
+        border-radius: 6px;
+        margin: 25px 0;
+        position: relative;
+        overflow: hidden;
+      }
+      #gauge-fill {
+        height: 100%;
+        width: 0%;
+        background: var(--primary);
+        transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      /* 比較エリア */
+      .comp-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 20px;
+      }
+      .comp-item {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 12px;
+      }
+      .comp-label {
+        font-size: 11px;
+        color: #888;
+        display: block;
+      }
+      .comp-val {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      /* 特殊アニメーション */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .unicorn-mode {
+        background: var(--unicorn) !important;
+        animation: rainbow 2s infinite linear;
+      }
+      @keyframes rainbow {
+        0% {
+          filter: hue-rotate(0deg);
+        }
+        100% {
+          filter: hue-rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-container">
+      <div id="input-screen" class="card">
+        <h2 style="margin-top: 0">📊 今週の計測</h2>
+        <div class="input-group">
+          <label>身長 (cm)</label>
+          <input type="number" id="height" placeholder="170.5" step="0.1" />
+        </div>
+        <div class="input-group">
+          <label>体重 (kg)</label>
+          <input type="number" id="weight" placeholder="65.0" step="0.1" />
+        </div>
+        <button class="btn-submit" onclick="handleLogicFlow()">
+          結果を見る
+        </button>
+      </div>
+
+      <div id="result-screen" class="card">
+        <div id="rank-badge" class="rank-badge">RANK</div>
+        <div class="bmi-display" id="bmi-out">BMI 0.0</div>
+
+        <div class="gauge-bg"><div id="gauge-fill"></div></div>
+
+        <p id="goal-msg" style="font-weight: bold; color: #555"></p>
+
+        <div class="comp-grid">
+          <div class="comp-item">
+            <span class="comp-label">同期中央値</span
+            ><span class="comp-val" id="med-val">--</span>
+          </div>
+          <div class="comp-item">
+            <span class="comp-label">同期TOP</span
+            ><span class="comp-val" id="top-val">--</span>
+          </div>
+        </div>
+        <button
+          class="btn-submit"
+          style="margin-top: 25px; background: #666"
+          onclick="location.reload()"
+        >
+          戻る
+        </button>
+      </div>
+    </div>
+
+    <script type="module" src="/js/logic.js"></script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+/* v4では @tailwind 指令の代わりに @import "tailwindcss"; を使います。
+  これだけで自動的にリセット(Preflight)やユーティリティが読み込まれます。
+*/
+
+@layer base {
+  body {
+    background-color: #0a0a0c; /* bg-[#0a0a0c] */
+    color: var(--color-slate-100); /* text-slate-100 */
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
