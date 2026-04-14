@@ -88,6 +88,7 @@ const RosterUpload = () => {
 
             // メインデータ
             batch.set(playerRef, {
+              playerID: docId,
               name: p.name || "Unknown Player",
               height: height,
               weight: currentWeight,
