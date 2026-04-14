@@ -35,15 +35,15 @@ const RosterUpload = () => {
     const startDate = new Date("2026-02-01");
     const totalDiff = finalWeight - startWeight;
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 6; i++) {
       const date = new Date(startDate);
       date.setDate(startDate.getDate() + i * 14);
 
-      const progress = i / 4;
+      const progress = i / 5;
       const weight = startWeight + totalDiff * progress + Math.random() * 0.2;
 
       history.push({
-        date: Timestamp.fromDate(date),
+        createdAt: Timestamp.fromDate(date),
         weight: parseFloat(weight.toFixed(1)),
       });
     }

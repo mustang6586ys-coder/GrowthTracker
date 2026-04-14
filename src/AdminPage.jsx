@@ -10,7 +10,7 @@ import {
 } from "recharts";
 import { RANKS } from "./constants";
 import { db } from "./firebase";
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { calcBMI } from "./utils";
 
 const AdminPage = ({
@@ -41,22 +41,16 @@ const AdminPage = ({
       const trends = {};
       try {
         const historyPromises = allPlayers.map((p) =>
-          getDocs(
-            query(
-              collection(db, "gt_players", p.id, "history"),
-              orderBy("createdAt", "asc"),
-            ),
-          ),
+          getDocs(collection(db, "gt_players", p.id, "history")),
         );
         const snapshots = await Promise.all(historyPromises);
-        snapshots.forEach((snap, index) => {
+snapshots.forEach((snap, index) => {
           const p = allPlayers[index];
           const genKey = `gen${p.generation}`;
           snap.forEach((doc) => {
             const data = doc.data();
-            const dateObj = data.createdAt?.toDate
-              ? data.createdAt.toDate()
-              : new Date();
+            const ts = data.createdAt || data.date;
+            const dateObj = ts?.toDate ? ts.toDate() : new Date();
             const dateStr = dateObj.toLocaleDateString("ja-JP", {
               month: "short",
               day: "numeric",
@@ -206,7 +200,7 @@ const AdminPage = ({
       {/* Analytics Graph */}
       <div className="bg-[#111114] rounded-[2.5rem] p-6 border border-white/5 mb-6 shadow-2xl relative h-[240px]">
         {!loadingGraph && (
-          <ResponsiveContainer width="100%" height="100%">
+          <ResponsiveContainer width="100%" height={240}>
             <LineChart data={teamHistory}>
               <CartesianGrid
                 strokeDasharray="3 3"
