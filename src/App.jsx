@@ -28,7 +28,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [tempData, setTempData] = useState(null);
-  const [filterGen, setFilterGen] = useState("all");
+  const [filterGen, setFilterGen] = useState(null);
   const [showUpload, setShowUpload] = useState(false);
 
   const fetchHistory = async (playerId) => {
